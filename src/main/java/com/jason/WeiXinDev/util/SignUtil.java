@@ -1,4 +1,4 @@
-package com.jason.verf.util;
+package com.jason.WeiXinDev.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,7 +10,7 @@ public class SignUtil {
 
 	public static boolean checkSign(String signature,String timestamp, String nonce) {
 		
-		String text = null ;
+		String text = null;
 		
 		String[] paramArr = new String[] { token, timestamp, nonce };
 		Arrays.sort(paramArr);

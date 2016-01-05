@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jason.verf.util.SignUtil;
+import org.dom4j.DocumentException;
+
+import com.jason.WeiXinDev.service.CoreService;
+import com.jason.WeiXinDev.util.SignUtil;
 
 public class VerificationServlet extends HttpServlet{
 	
@@ -33,8 +36,28 @@ public class VerificationServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
+		String signature = req.getParameter("signature");
+		String timestamp = req.getParameter("timestamp");
+		String nonce = req.getParameter("nonce");
+		String echostr = req.getParameter("echostr");
+		
+		PrintWriter out = resp.getWriter();
+		
+		if(SignUtil.checkSign(signature,timestamp,nonce)){
+			try {
+				String respXml = CoreService.process(req);
+				out.print(respXml);
+			} catch (DocumentException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		out.close();
+		out = null;
+		
 	}
 	
 	private static String strSort(String a ,String b , String c ){
