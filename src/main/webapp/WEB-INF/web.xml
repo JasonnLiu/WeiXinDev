@@ -4,14 +4,14 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
-		<servlet-name>VerificationServlet</servlet-name>
+		<servlet-name>CoreServlet</servlet-name>
 		<servlet-class>
-			com.jason.verf.servlet.VerificationServlet
+			com.jason.WeiXinDev.servlet.CoreServlet
 		</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>VerificationServlet</servlet-name>
+		<servlet-name>CoreServlet</servlet-name>
 		<url-pattern>/VerificationServlet</url-pattern>
 	</servlet-mapping>
 

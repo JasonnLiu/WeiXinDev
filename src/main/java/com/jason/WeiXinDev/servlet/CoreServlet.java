@@ -1,4 +1,4 @@
-package com.jason.verf.servlet;
+package com.jason.WeiXinDev.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import org.dom4j.DocumentException;
 import com.jason.WeiXinDev.service.CoreService;
 import com.jason.WeiXinDev.util.SignUtil;
 
-public class VerificationServlet extends HttpServlet{
+public class CoreServlet extends HttpServlet{
 	
 	
 

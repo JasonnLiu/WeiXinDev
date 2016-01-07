@@ -13,6 +13,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.jason.WeiXinDev.message.resp.NewsMessage;
 import com.jason.WeiXinDev.message.resp.TextMessage;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
@@ -108,6 +109,11 @@ public class MessageUtil {
 	public static String message2xml(TextMessage tm){
 		xstream.alias("xml", tm.getClass());
 		return xstream.toXML(tm);
+	}
+	public static String message2xml(NewsMessage nm){
+		xstream.alias("xml", nm.getClass());
+		xstream.alias("item", nm.getArticles().get(0).getClass());
+		return xstream.toXML(nm);
 	}
 
 }
