@@ -21,7 +21,7 @@ import com.jason.WeiXinDev.message.resp.NewsMessage;
 
 public class LBSUtil {
 
-	//private static Logger logger = LoggerFactory.getLogger(LBSUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(LBSUtil.class);
 	
 	private static String api_url = "http://api.map.baidu.com/ag/coord/convert?from=2&to=4&x=location_X&y=location_Y";
 	private static String js_api_url = "weixinmptest0111.aliapp.com/BMap_js.jsp?";
@@ -62,7 +62,7 @@ public class LBSUtil {
 	}
 
 	public static void createNewsMessage(JSONArray joa,String[] MyLocation,NewsMessage nm) {
-		//logger.info("LBSUtil createNewsMessage ");
+		logger.info("LBSUtil createNewsMessage ");
 		if (joa.length() < 5) {
 			nm.setArticleCount(joa.length());
 			createNewsMessage(joa,joa.length(),nm,MyLocation);

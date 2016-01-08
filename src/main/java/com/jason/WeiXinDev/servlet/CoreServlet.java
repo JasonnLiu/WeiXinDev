@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.dom4j.DocumentException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.jason.WeiXinDev.service.CoreService;
 import com.jason.WeiXinDev.util.SignUtil;
 
 public class CoreServlet extends HttpServlet{
 	
-	
+	private static Logger logger = LoggerFactory.getLogger(CoreServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +27,7 @@ public class CoreServlet extends HttpServlet{
 		String timestamp = req.getParameter("timestamp");
 		String nonce = req.getParameter("nonce");
 		String echostr = req.getParameter("echostr");
+		
 		
 		PrintWriter out = resp.getWriter();
 		if(SignUtil.checkSign(signature,timestamp,nonce)){
@@ -45,7 +48,6 @@ public class CoreServlet extends HttpServlet{
 		String echostr = req.getParameter("echostr");
 		
 		PrintWriter out = resp.getWriter();
-		
 		if(SignUtil.checkSign(signature,timestamp,nonce)){
 			try {
 				String respXml = CoreService.process(req);

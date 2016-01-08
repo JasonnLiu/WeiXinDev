@@ -26,7 +26,6 @@ float lat_my = Float.parseFloat(request.getParameter("lat_my"));
 	<title>步行导航检索</title>
 </head>
 <body>
-算法
 	<div id="allmap"></div>
 </body>
 </html>

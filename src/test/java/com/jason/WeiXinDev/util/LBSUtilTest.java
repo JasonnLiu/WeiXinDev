@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class LBSUtilTest {
 	
-	private static Logger logger = LoggerFactory.getLogger(LBSUtilTest.class);
+	//private static Logger logger = LoggerFactory.getLogger(LBSUtilTest.class);
 	
 	@Test
 	public void testConvCoord() throws IOException, JSONException {
@@ -21,7 +21,11 @@ public class LBSUtilTest {
 		
 		String url =  "lng_dest="  + "&lat_dest="  + "&lng_my="  + "&lat_my=" ;
 		System.out.println(url);
-		logger.info("log4j");
+		//logger.info("log4j");
+		
+		String str1 = "∏ΩΩ¸√¿ ≥";
+		System.out.println(str1.charAt(2));
+		System.out.println(str1.substring(0,2));
 	}
 	
 

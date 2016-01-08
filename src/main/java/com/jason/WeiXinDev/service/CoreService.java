@@ -15,7 +15,7 @@ import com.jason.WeiXinDev.message.resp.TextMessage;
 import com.jason.WeiXinDev.util.MessageUtil;
 
 public class CoreService {
-	
+
 	private static Logger logger = LoggerFactory.getLogger(CoreService.class);
 
 	public static String process(HttpServletRequest req) throws DocumentException, IOException {
@@ -23,19 +23,20 @@ public class CoreService {
 
 		Map<String, String> map = MessageUtil.parseReq(req);
 
-		
 		String MsgType = map.get("MsgType");
-		
 
 		// 文本消息
 		if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
 			String msgContent = map.get("Content");
-			if(msgContent.equals("周边搜索")){
+			if (msgContent.equals("周边搜索")) {
 				TextMessage tm = LBService.initAnswer(map);
 				logger.info("周边搜索");
 				respXml = MessageUtil.message2xml(tm);
 				return respXml;
-			}else{
+			} else if (msgContent.length() >= 2 && msgContent.substring(0, 2).equals("附近")) {
+				respXml = LBService.process(map, msgContent.substring(2));
+				return respXml;
+			} else {
 				TextMessage tm = new TextMessage();
 				tm.setFromUserName(map.get("ToUserName"));
 				tm.setToUserName(map.get("FromUserName"));
@@ -50,15 +51,15 @@ public class CoreService {
 		}
 		// 图片消息
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-			
+
 		}
 		// 语音消息
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {
-			
+
 		}
 		// 视频消息
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VIDEO)) {
-			
+
 		}
 		// 地理位置消息
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) {
@@ -68,7 +69,7 @@ public class CoreService {
 		}
 		// 链接消息
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
-			
+
 		}
 		// 事件推送
 		else if (MsgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
@@ -76,7 +77,7 @@ public class CoreService {
 			String eventType = map.get("Event");
 			// 关注
 			if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-				
+
 			}
 			// 取消关注
 			else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
@@ -95,9 +96,9 @@ public class CoreService {
 				// TODO 处理菜单点击事件
 			}
 		}
-		
+
 		return null;
-		
+
 	}
 
 }

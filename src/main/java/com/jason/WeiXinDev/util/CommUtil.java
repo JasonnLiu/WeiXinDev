@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommUtil {
 	
-	//private static Logger logger 
+	private static Logger logger = LoggerFactory.getLogger(CommUtil.class);
 	
 	public static String getProperty(String key,String path){
 		String value = null;
@@ -31,7 +31,7 @@ public class CommUtil {
 			}
 		}else{
 			System.out.println("no");
-			//logger.error("no InputSream");
+			logger.error("no InputSream");
 		}
 		
 		return value;
