@@ -24,7 +24,7 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -35,32 +35,19 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf_version}</version>
 		</dependency>
-		
-		<!-- 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.13</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.7</version>
-		</dependency>
-		 -->
-		
-		 
-		
-		
-		
-		
-		
+
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>1.2.13</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-log4j12</artifactId> <version>1.7.5</version> <scope>provided</scope> 
+			</dependency> <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.7.7</version> </dependency> -->
+
+
+
+
+
+
+
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
@@ -85,7 +72,7 @@
 			<version>1.4.15</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -96,12 +83,29 @@
 			<artifactId>json</artifactId>
 			<version>20090211</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>IKAnalyzer</groupId>
+			<artifactId>IKAnalyzer</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>4.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>4.6.0</version>
+		</dependency>
 
-
-
-
-
+		<!-- <dependency> <groupId>IKAnalyzer</groupId> <artifactId>IKAnalyzer</artifactId> 
+			<version>12</version> <scope>system</scope> <systemPath>${basedir}/lib/IKAnalyzer2012FF_u1.jar</systemPath> 
+			</dependency> <dependency> <groupId>lucene</groupId> <artifactId>lucene</artifactId> 
+			<version>12</version> <scope>system</scope> <systemPath>${basedir}/lib/lucene-core-4.6.0.jar</systemPath> 
+			</dependency> <dependency> <groupId>queryparser</groupId> <artifactId>queryparser</artifactId> 
+			<version>12</version> <scope>system</scope> <systemPath>${basedir}/lib/lucene-queryparser-4.6.0.jar</systemPath> 
+			</dependency> -->
 	</dependencies>
 
 	<repositories>
@@ -114,6 +118,14 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

@@ -37,6 +37,18 @@ public class CoreService {
 				respXml = LBService.process(map, msgContent.substring(2));
 				return respXml;
 			} else {
+				//调用ChatService
+				String respContent = ChatService.process(msgContent);
+				
+				TextMessage tm = new TextMessage();
+				tm.setFromUserName(map.get("ToUserName"));
+				tm.setToUserName(map.get("FromUserName"));
+				tm.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+				tm.setCreateTime(new Date().getTime());
+				tm.setContent(respContent);
+				respXml = MessageUtil.message2xml(tm);
+				return respXml;
+				/*
 				TextMessage tm = new TextMessage();
 				tm.setFromUserName(map.get("ToUserName"));
 				tm.setToUserName(map.get("FromUserName"));
@@ -47,6 +59,7 @@ public class CoreService {
 				tm.setContent(respContent);
 				respXml = MessageUtil.message2xml(tm);
 				return respXml;
+				*/
 			}
 		}
 		// 图片消息

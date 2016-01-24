@@ -8,6 +8,7 @@
 		<servlet-class>
 			com.jason.WeiXinDev.servlet.CoreServlet
 		</servlet-class>
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
