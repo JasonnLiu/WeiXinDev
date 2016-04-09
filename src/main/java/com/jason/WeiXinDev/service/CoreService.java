@@ -18,7 +18,8 @@ public class CoreService {
 
 	private static Logger logger = LoggerFactory.getLogger(CoreService.class);
 
-	public static String process(HttpServletRequest req) throws DocumentException, IOException {
+	public static String process(HttpServletRequest req)
+			throws DocumentException, IOException {
 		String respXml = null;
 
 		Map<String, String> map = MessageUtil.parseReq(req);
@@ -33,13 +34,23 @@ public class CoreService {
 				logger.info("周边搜索");
 				respXml = MessageUtil.message2xml(tm);
 				return respXml;
-			} else if (msgContent.length() >= 2 && msgContent.substring(0, 2).equals("附近")) {
+			} else if (msgContent.length() >= 2
+					&& msgContent.substring(0, 2).equals("附近")) {
 				respXml = LBService.process(map, msgContent.substring(2));
 				return respXml;
+			} else if (msgContent.equals("开始签到")) {
+				TextMessage tm = SignInService.teacher_process(map);
+				logger.info("老师开启签到-TextMessage生成");
+				respXml = MessageUtil.message2xml(tm);
+				return respXml;
+			} else if (msgContent.equals("到")) {
+				TextMessage tm = SignInService.teacher_process(map);
+				logger.info("学生签到-TextMessage生成");
+				respXml = MessageUtil.message2xml(tm);
 			} else {
-				//调用ChatService
+				// 调用ChatService
 				String respContent = ChatService.process(msgContent);
-				
+
 				TextMessage tm = new TextMessage();
 				tm.setFromUserName(map.get("ToUserName"));
 				tm.setToUserName(map.get("FromUserName"));
@@ -49,17 +60,15 @@ public class CoreService {
 				respXml = MessageUtil.message2xml(tm);
 				return respXml;
 				/*
-				TextMessage tm = new TextMessage();
-				tm.setFromUserName(map.get("ToUserName"));
-				tm.setToUserName(map.get("FromUserName"));
-				tm.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-				tm.setCreateTime(new Date().getTime());
-				String respContent = "Sorry , I can't help you";
-				logger.info("no function");
-				tm.setContent(respContent);
-				respXml = MessageUtil.message2xml(tm);
-				return respXml;
-				*/
+				 * TextMessage tm = new TextMessage();
+				 * tm.setFromUserName(map.get("ToUserName"));
+				 * tm.setToUserName(map.get("FromUserName"));
+				 * tm.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+				 * tm.setCreateTime(new Date().getTime()); String respContent =
+				 * "Sorry , I can't help you"; logger.info("no function");
+				 * tm.setContent(respContent); respXml =
+				 * MessageUtil.message2xml(tm); return respXml;
+				 */
 			}
 		}
 		// 图片消息
